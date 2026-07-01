@@ -121,9 +121,11 @@ def build_route_impls_from_routes(routes: list[Any]) -> RouteImpls:
     route_impls: RouteImpls = {}
     for route in routes:
         if not isinstance(route, APIRoute):
-            # Recurse into sub-routers (e.g. _IncludedRouter) that wrap APIRoutes
-            if hasattr(route, "routes"):
-                sub_impls = build_route_impls_from_routes(route.routes)
+            # FastAPI 0.138+ wraps include_router() in _IncludedRouter which
+            # stores the original APIRoutes under .original_router.routes
+            sub_routes = getattr(route, "routes", None) or getattr(getattr(route, "original_router", None), "routes", None)
+            if sub_routes:
+                sub_impls = build_route_impls_from_routes(sub_routes)
                 for m, paths in sub_impls.items():
                     route_impls.setdefault(m, {}).update(paths)
             continue
