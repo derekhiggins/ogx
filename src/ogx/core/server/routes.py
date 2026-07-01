@@ -121,6 +121,11 @@ def build_route_impls_from_routes(routes: list[Any]) -> RouteImpls:
     route_impls: RouteImpls = {}
     for route in routes:
         if not isinstance(route, APIRoute):
+            # Recurse into sub-routers (e.g. _IncludedRouter) that wrap APIRoutes
+            if hasattr(route, "routes"):
+                sub_impls = build_route_impls_from_routes(route.routes)
+                for m, paths in sub_impls.items():
+                    route_impls.setdefault(m, {}).update(paths)
             continue
         methods = [m for m in (route.methods or []) if m != "HEAD"]
         if not methods:
