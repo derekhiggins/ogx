@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "setuptools-scm>=8.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
-fallback_version = "1.2.1"
+fallback_version = "1.2.2"
 
 [tool.uv]
 required-version = ">=0.7.0"
@@ -23,7 +23,7 @@ constraint-dependencies = [
     "msgpack>=1.2.1",
     "pillow>=12.3.0",                  # CVE-2026-42311: PSD RCE; CVE-2026-55379/55380/54060: font/GD DoS
     "protobuf>=5.29.6",               # CVE-2025-4565 + CVE-2026-0994: parsing vulnerabilities
-    "pyasn1>=0.6.3",                   # CVE-2026-30922: DoS via unbounded recursion
+    "pyasn1>=0.6.4",                   # CVE-2026-30922: DoS via unbounded recursion
     "pydantic-settings>=2.14.2",
     "python-engineio>=4.13.2",
     "python-multipart>=0.0.31",        # CVE-2026-40347: header injection; CVE-2026-42561: DoS via oversized headers
@@ -87,7 +87,7 @@ dependencies = [
 
 [project.optional-dependencies]
 client = [
-    "ogx-client==1.2.1", # Optional for library-only usage
+    "ogx-client==1.2.2", # Optional for library-only usage
 ]
 openclient = [
     "ogx-open-client>=1.0.2",
