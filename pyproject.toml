@@ -8,7 +8,7 @@ fallback_version = "0.4.6"
 [tool.uv]
 required-version = ">=0.7.0"
 constraint-dependencies = [
-    "pyasn1>=0.6.4",  # CVE-2026-30922, CVE-2026-59885: DoS via unbounded recursion
+    "pyasn1>=0.6.3",  # CVE-2026-30922: DoS via unbounded recursion
     "starlette>=1.0.1",                # CVE-2026-48710
 ]
 
@@ -47,7 +47,7 @@ dependencies = [
     "rich",
     "termcolor",
     "tiktoken",
-    "pillow>=12.2.0",
+    "pillow>=12.3.0",                                 # CVE-2026-42311: PSD RCE; CVE-2026-55379/55380/54060: font/GD DoS
     "h11>=0.16.0",
     "python-multipart>=0.0.20",                       # For fastapi Form
     "uvicorn>=0.34.0",                                # server
