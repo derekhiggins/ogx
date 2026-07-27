@@ -11,7 +11,10 @@ resolution-markers = [
 ]
 
 [manifest]
-constraints = [{ name = "starlette", specifier = ">=1.0.1" }]
+constraints = [
+    { name = "pyasn1", specifier = ">=0.6.4" },
+    { name = "starlette", specifier = ">=1.0.1" },
+]
 
 [[package]]
 name = "accelerate"
@@ -895,7 +898,7 @@ wheels = [
 
 [[package]]
 name = "cyclopts"
-version = "4.21.0"
+version = "4.20.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "attrs" },
@@ -903,9 +906,9 @@ dependencies = [
     { name = "rich" },
     { name = "rich-rst" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d9/53/977540be379b0c82550df872912446def343ab0dfa138b8726120427f83d/cyclopts-4.21.0.tar.gz", hash = "sha256:477c18c791c924cca4836f79fce000a7bae45f551e340d9e1654e102c6d9ab9d", size = 190914, upload-time = "2026-07-09T19:07:07.154Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/74/89/f4c775c651d91f9cd8149f70baec94c902a34e5f17a7a67881881bcfb244/cyclopts-4.20.0.tar.gz", hash = "sha256:1d819de2b12dc6b1c9f17ce0f4937d82922c0b83ac846eb4b3289c9c9f321c9f", size = 190236, upload-time = "2026-06-29T15:04:42.253Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b4/f6/1c671874560a70d902dd57028a75411c176910de2df3d6a6a533de424131/cyclopts-4.21.0-py3-none-any.whl", hash = "sha256:ded3ddb15b0c815f44d245011fc4cdd5a4809a3bb8202869e9e02195a87c0e18", size = 230066, upload-time = "2026-07-09T19:07:05.326Z" },
+    { url = "https://files.pythonhosted.org/packages/dd/d4/7243bc65d33c5ff5150569c42c8c1154aadae20b25638afe35f7f568489c/cyclopts-4.20.0-py3-none-any.whl", hash = "sha256:0b4337e9c11303d86b33d3f37c629dc01638f84591681e0e5611286bdd507646", size = 229383, upload-time = "2026-06-29T15:04:40.621Z" },
 ]
 
 [[package]]
@@ -2058,7 +2061,7 @@ wheels = [
 
 [[package]]
 name = "llama-stack"
-version = "0.4.2.3+rhai0"
+version = "0.4.7+rhai0"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },
@@ -2201,8 +2204,10 @@ unit = [
     { name = "chardet" },
     { name = "coverage" },
     { name = "databricks-sdk" },
+    { name = "fairscale" },
     { name = "faiss-cpu" },
     { name = "litellm" },
+    { name = "llama-stack-client" },
     { name = "mcp" },
     { name = "moto", extra = ["s3"] },
     { name = "ollama" },
@@ -2211,6 +2216,10 @@ unit = [
     { name = "sqlalchemy", extra = ["asyncio"] },
     { name = "sqlite-vec" },
     { name = "together" },
+    { name = "torch", version = "2.8.0", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform == 'darwin'" },
+    { name = "torch", version = "2.8.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin'" },
+    { name = "torchvision", version = "0.23.0", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(platform_machine == 'aarch64' and sys_platform == 'linux') or sys_platform == 'darwin'" },
+    { name = "torchvision", version = "0.23.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(platform_machine != 'aarch64' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux')" },
 ]
 
 [package.metadata]
@@ -2225,11 +2234,11 @@ requires-dist = [
     { name = "jinja2", specifier = ">=3.1.6" },
     { name = "jsonschema" },
     { name = "llama-stack-api", editable = "src/llama_stack_api" },
-    { name = "llama-stack-client", marker = "extra == 'client'", specifier = "==0.4.2" },
+    { name = "llama-stack-client", marker = "extra == 'client'", specifier = "==0.4.7" },
     { name = "openai", specifier = ">=2.5.0" },
     { name = "opentelemetry-exporter-otlp-proto-http", specifier = ">=1.30.0" },
     { name = "opentelemetry-sdk", specifier = ">=1.30.0" },
-    { name = "pillow", specifier = ">=12.2.0" },
+    { name = "pillow", specifier = ">=12.3.0" },
     { name = "prompt-toolkit" },
     { name = "psycopg2-binary" },
     { name = "pydantic", specifier = ">=2.11.9" },
@@ -2301,7 +2310,7 @@ test = [
     { name = "milvus-lite", specifier = ">=2.5.0" },
     { name = "psycopg2-binary", specifier = ">=2.9.0" },
     { name = "pymilvus", specifier = ">=2.6.1" },
-    { name = "pypdf", specifier = ">=6.1.3" },
+    { name = "pypdf", specifier = ">=6.7.2" },
     { name = "qdrant-client" },
     { name = "requests" },
     { name = "sqlalchemy" },
@@ -2318,7 +2327,7 @@ type-checking = [
     { name = "datasets" },
     { name = "fairscale" },
     { name = "faiss-cpu" },
-    { name = "llama-stack-client", specifier = "==0.4.2" },
+    { name = "llama-stack-client", specifier = "==0.4.7" },
     { name = "lm-format-enforcer" },
     { name = "mcp" },
     { name = "nest-asyncio" },
@@ -2348,22 +2357,25 @@ unit = [
     { name = "chardet" },
     { name = "coverage" },
     { name = "databricks-sdk" },
+    { name = "fairscale" },
     { name = "faiss-cpu" },
     { name = "litellm" },
+    { name = "llama-stack-client", specifier = "==0.4.7" },
     { name = "mcp" },
     { name = "moto", extras = ["s3"], specifier = ">=5.1.10" },
     { name = "ollama" },
     { name = "psycopg2-binary", specifier = ">=2.9.0" },
-    { name = "pypdf", specifier = ">=6.1.3" },
+    { name = "pypdf", specifier = ">=6.7.2" },
     { name = "sqlalchemy" },
     { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0.41" },
     { name = "sqlite-vec" },
     { name = "together" },
+    { name = "torch", specifier = ">=2.6.0", index = "https://download.pytorch.org/whl/cpu" },
+    { name = "torchvision", specifier = ">=0.21.0", index = "https://download.pytorch.org/whl/cpu" },
 ]
 
 [[package]]
 name = "llama-stack-api"
-version = "0.4.2"
 source = { editable = "src/llama_stack_api" }
 dependencies = [
     { name = "fastapi" },
@@ -2386,7 +2398,7 @@ requires-dist = [
 
 [[package]]
 name = "llama-stack-client"
-version = "0.4.2"
+version = "0.4.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
@@ -2405,9 +2417,9 @@ dependencies = [
     { name = "tqdm" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/5d/b5/fdfef39a1dedc319b98782a3b2e047b9aae394ca59010fb25146aef5edca/llama_stack_client-0.4.2.tar.gz", hash = "sha256:1277bf563531d9bc476e305f2d2bead9900986d426a2e32c9adf4b6a464804c3", size = 352951, upload-time = "2026-01-16T14:17:19.688Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/99/59/91a10634f40f7a8dcfe1bdfab4de9aaa5b13c5b2fe09b1d3d85924490dce/llama_stack_client-0.4.7.tar.gz", hash = "sha256:7f939fa1bc4505a479fda90291f707dc90a2fcc38a7f43f9679755544750a7ca", size = 352947, upload-time = "2026-07-27T14:26:45.634Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5f/af/e1c5065b06f98f832a9f74cb8e092e88fd0c10fdf670ab2aecd614548768/llama_stack_client-0.4.2-py3-none-any.whl", hash = "sha256:d6e1c73391bdc3494fe1fa9ce7575a4749d13d111718e458e874ece544988729", size = 375941, upload-time = "2026-01-16T14:17:18.458Z" },
+    { url = "https://files.pythonhosted.org/packages/1a/40/84fb4faece35d29c114811c20f018c019a5e08f1938a0a119fa3cbf2c2fe/llama_stack_client-0.4.7-py3-none-any.whl", hash = "sha256:f6cf220343c8f56c61bc9ed49851668809e0444ae5a77ff4771cead53d317511", size = 375941, upload-time = "2026-07-27T14:26:44.018Z" },
 ]
 
 [[package]]
@@ -3827,11 +3839,11 @@ wheels = [
 
 [[package]]
 name = "pyasn1"
-version = "0.6.1"
+version = "0.6.4"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ba/e9/01f1a64245b89f039897cb0130016d79f77d52669aae6ee7b159a6c4c018/pyasn1-0.6.1.tar.gz", hash = "sha256:6f580d2bdd84365380830acf45550f2511469f673cb4a5ae3857a3170128b034", size = 145322, upload-time = "2024-09-10T22:41:42.55Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a4/9a/23310166d960def5897e91fe20e5b724601b02a22e84ba1f94232c0b7f67/pyasn1-0.6.4.tar.gz", hash = "sha256:9c447d8431c947fe4c8febc4ed9e760bc29011a5b01e5c74b67025bd9fb8ce81", size = 151262, upload-time = "2026-07-09T01:12:33.988Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c8/f1/d6a797abb14f6283c0ddff96bbdd46937f64122b8c925cab503dd37f8214/pyasn1-0.6.1-py3-none-any.whl", hash = "sha256:0d632f46f2ba09143da3a8afe9e33fb6f92fa2320ab7e886e2d0f7672af84629", size = 83135, upload-time = "2024-09-11T16:00:36.122Z" },
+    { url = "https://files.pythonhosted.org/packages/9a/3b/6163796d69c3977d1e4287bea4a6979161cbbdd170ebb430511e8e1999ce/pyasn1-0.6.4-py3-none-any.whl", hash = "sha256:deda9277cfd454080ec40b207fb6df82206a3a2688735233cdcd8d3d565f088b", size = 84410, upload-time = "2026-07-09T01:12:32.92Z" },
 ]
 
 [[package]]
@@ -4174,11 +4186,11 @@ wheels = [
 
 [[package]]
 name = "pypdf"
-version = "6.2.0"
+version = "6.7.5"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/4e/2b/8795ec0378384000b0a37a2b5e6d67fa3d84802945aa2c612a78a784d7d4/pypdf-6.2.0.tar.gz", hash = "sha256:46b4d8495d68ae9c818e7964853cd9984e6a04c19fe7112760195395992dce48", size = 5272001, upload-time = "2025-11-09T11:10:41.911Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f6/52/37cc0aa9e9d1bf7729a737a0d83f8b3f851c8eb137373d9f71eafb0a3405/pypdf-6.7.5.tar.gz", hash = "sha256:40bb2e2e872078655f12b9b89e2f900888bb505e88a82150b64f9f34fa25651d", size = 5304278, upload-time = "2026-03-02T09:05:21.464Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/de/ba/743ddcaf1a8fb439342399645921e2cf2c600464cba5531a11f1cc0822b6/pypdf-6.2.0-py3-none-any.whl", hash = "sha256:4c0f3e62677217a777ab79abe22bf1285442d70efabf552f61c7a03b6f5c569f", size = 326592, upload-time = "2025-11-09T11:10:39.941Z" },
+    { url = "https://files.pythonhosted.org/packages/05/89/336673efd0a88956562658aba4f0bbef7cb92a6fbcbcaf94926dbc82b408/pypdf-6.7.5-py3-none-any.whl", hash = "sha256:07ba7f1d6e6d9aa2a17f5452e320a84718d4ce863367f7ede2fd72280349ab13", size = 331421, upload-time = "2026-03-02T09:05:19.722Z" },
 ]
 
 [[package]]
@@ -4600,15 +4612,15 @@ wheels = [
 
 [[package]]
 name = "rich-rst"
-version = "2.1.0"
+version = "2.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pygments" },
     { name = "rich" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e2/d6/d0b9fafc73b65767200da027acab1db1bdb1048f4fea5ebf659df01c700e/rich_rst-2.1.0.tar.gz", hash = "sha256:f4d117b49697f338769759fa5cacf5197da4888b347b9fda2e50aef5cd8d93bd", size = 302732, upload-time = "2026-07-05T02:59:44.308Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0b/40/905f612e7bf105d7efefa923542e0c85b731cf29bcc1864331427dbc52b8/rich_rst-2.0.2.tar.gz", hash = "sha256:664a669801695c5a126151338f309ce3ea3e0ea081c89a4130b8a4f659911ed9", size = 300822, upload-time = "2026-06-25T17:24:14.298Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2a/68/1fc93dd759605b5d00fc98b50200739e41ed32bd22d6ba35ca6c3932371b/rich_rst-2.1.0-py3-none-any.whl", hash = "sha256:7ecd1343ee12c879d0e7ae74c3eb6d263b023d2929c6d114212eb1fd91057255", size = 272987, upload-time = "2026-07-05T02:59:42.792Z" },
+    { url = "https://files.pythonhosted.org/packages/cf/5f/62fdf0f574ec75af7ada8ad27c1a67e3723d491143bc88d5371c25673949/rich_rst-2.0.2-py3-none-any.whl", hash = "sha256:7bc2923929c9bbc61aadfef2069b742446823b306af84cf9e0f56b965a3d3035", size = 273082, upload-time = "2026-06-25T17:24:09.557Z" },
 ]
 
 [[package]]
@@ -5273,20 +5285,20 @@ wheels = [
 
 [[package]]
 name = "starlette"
-version = "1.2.1"
+version = "1.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
     { name = "typing-extensions", marker = "python_full_version < '3.13'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/25/44/ec35f1b6e83094b997da438a02c8c9b0ade2b1e84cfc48bd4656780760a6/starlette-1.2.1.tar.gz", hash = "sha256:9b9b5ebb992e67d6093741e63c2f59e4f6fff986f81163c087867bd7b924b3f6", size = 2701854, upload-time = "2026-05-31T01:07:51.847Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c5/bf/616a066c2760f6c2b1ae3437cc28149734d069fbb46511712beae118a68c/starlette-1.2.0.tar.gz", hash = "sha256:3c5a6b23fff42492914e93890bb80cbfea72dbf37de268eec06185d62a4ca553", size = 2668923, upload-time = "2026-05-28T11:42:50.568Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1c/54/196d0c1db10af76baa4f64894448505d60d3cdf70ef92cbb35f46a4e4c71/starlette-1.2.1-py3-none-any.whl", hash = "sha256:4de0082d08c8f6764a85a54cf1120d6939507a19905c7768acad2a9f875d2b89", size = 73350, upload-time = "2026-05-31T01:07:50.09Z" },
+    { url = "https://files.pythonhosted.org/packages/9f/85/492183764d5d01d4514be3730fdb8e228a80605783099551c51627578b5d/starlette-1.2.0-py3-none-any.whl", hash = "sha256:36e0c76ac59157e75dc4b3bdeafba97fb04eaf1878045f15dbef666a6f092ed7", size = 73213, upload-time = "2026-05-28T11:42:48.801Z" },
 ]
 
 [[package]]
 name = "streamlit"
-version = "1.59.2"
+version = "1.58.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "altair" },
@@ -5314,9 +5326,9 @@ dependencies = [
     { name = "watchdog", marker = "sys_platform != 'darwin'" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9c/13/725a798311129fc13d7e67dc690f12786c22007b34abe9fd88add9d9b044/streamlit-1.59.2.tar.gz", hash = "sha256:8fcb35df152868d33eec7ad2d89e276499a5351fb861eb1752b76476be7eb582", size = 9770703, upload-time = "2026-07-13T09:00:50.858Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/91/74/20dac6d6200d6ec0e1c230fb8eeb6a1a423645eacb76e8d802adfc246456/streamlit-1.58.0.tar.gz", hash = "sha256:78a22e7085b053af7ce544442bf4b670771e68c509ba1bdaa056ba0708f49c3d", size = 8721149, upload-time = "2026-05-28T18:02:44.606Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fa/4b/c2902746fb3fcc737ba925865a73475ad51521f26f84652aa9b337e12227/streamlit-1.59.2-py3-none-any.whl", hash = "sha256:5014cb4f0064bd16c58fe334cb0d3c4b7e2be3d1ce4c02202c07114a33576dab", size = 10338011, upload-time = "2026-07-13T09:00:48.464Z" },
+    { url = "https://files.pythonhosted.org/packages/df/84/14c36a92fb24f8e1cea452f53b0744b5da69d52cdd2fe22e71e6fbf765d5/streamlit-1.58.0-py3-none-any.whl", hash = "sha256:4ca8a7afc5bd16a5f176ccf4be1e34e8121cad0240becd127fb58a103ea3178d", size = 9219185, upload-time = "2026-05-28T18:02:41.993Z" },
 ]
 
 [[package]]
@@ -5396,7 +5408,7 @@ wheels = [
 
 [[package]]
 name = "together"
-version = "2.22.1"
+version = "2.21.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
@@ -5416,9 +5428,9 @@ dependencies = [
     { name = "types-tqdm" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4c/8f/4cb88e7e8cf826a6f8384ac09b95e14787ec70680d768859f1c4ef32173b/together-2.22.1.tar.gz", hash = "sha256:ad503a9ca0befe57edd91cb87919fcd66a457236d49e1fb48e58a958530936a0", size = 625489, upload-time = "2026-07-09T04:08:12.964Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/1d/1d/3639c6c36ac5dd8d9e172aabc244bf3c27a3060b6220801aa12e04692712/together-2.21.0.tar.gz", hash = "sha256:dff5e01b9b51b1f70f8385e28a61a9360631d56f31547a86300bacb959775cc8", size = 617197, upload-time = "2026-06-29T15:26:04.14Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/37/44/1cd78c74df56193770bdd8d795a6c59f8641e3844c78feeaba3f44ce2ee3/together-2.22.1-py3-none-any.whl", hash = "sha256:4f2c761d6ed429f7a329f4206c09046453ddee6b5075c750f825f40b5e3d9733", size = 428962, upload-time = "2026-07-09T04:08:11.054Z" },
+    { url = "https://files.pythonhosted.org/packages/d9/13/82912d557fba9b1e8f32ba515b40676ef9c84c89f9dc3e0645a1b5ca4102/together-2.21.0-py3-none-any.whl", hash = "sha256:f2bb06a6b1ba0dbbd25b42dd0bc7e209f1b4060c7cc37704c2966927c16ba916", size = 419444, upload-time = "2026-06-29T15:26:02.749Z" },
 ]
 
 [[package]]
