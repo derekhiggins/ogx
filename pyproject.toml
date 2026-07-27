@@ -95,13 +95,13 @@ starter = [
     "langdetect",
     "matplotlib",
     "mcp>=1.23.0",
-    "nltk>=3.9.4",
+    "nltk>=3.10.0",                                   # CVE-2026-54293/CVE-2026-12243: path traversal in nltk.data.load()
     "numpy",
     "ollama",
     "opentelemetry-exporter-otlp-proto-http",
     "opentelemetry-sdk",
     "pandas",
-    "pillow>=12.2.0",
+    "pillow>=12.3.0",                                 # CVE-2026-42311: PSD RCE; CVE-2026-55379/55380/54060: font/GD DoS
     "psycopg2-binary",
     "pymilvus[milvus-lite]>=2.4.10",
     "pymongo",
