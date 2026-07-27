@@ -2376,6 +2376,7 @@ unit = [
 
 [[package]]
 name = "llama-stack-api"
+version = "0.4.7"
 source = { editable = "src/llama_stack_api" }
 dependencies = [
     { name = "fastapi" },
