@@ -4103,7 +4103,7 @@ wheels = [
 
 [[package]]
 name = "ogx"
-version = "1.2.1+rhaiv.0"
+version = "1.2.2+rhaiv.0"
 source = { editable = "." }
 dependencies = [
     { name = "aiosqlite" },
@@ -4390,7 +4390,7 @@ requires-dist = [
     { name = "nltk", marker = "extra == 'starter'", specifier = ">=3.10.0" },
     { name = "numpy", marker = "extra == 'starter'" },
     { name = "ogx-api", editable = "src/ogx_api" },
-    { name = "ogx-client", marker = "extra == 'client'", specifier = "==1.2.1" },
+    { name = "ogx-client", marker = "extra == 'client'", specifier = "==1.2.2" },
     { name = "ogx-open-client", marker = "extra == 'openclient'", specifier = ">=1.0.2" },
     { name = "ollama", marker = "extra == 'starter'" },
     { name = "openai", specifier = ">=2.41.0" },
@@ -4602,7 +4602,7 @@ unit = [
 
 [[package]]
 name = "ogx-api"
-version = "1.2.1+rhaiv.0"
+version = "1.2.2+rhaiv.0"
 source = { editable = "src/ogx_api" }
 dependencies = [
     { name = "fastapi" },
@@ -4627,7 +4627,7 @@ requires-dist = [
 
 [[package]]
 name = "ogx-client"
-version = "1.2.1"
+version = "1.2.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "fire" },
@@ -4637,9 +4637,9 @@ dependencies = [
     { name = "requests" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4f/6b/5a22ea5b1193219cc6760acdd4085676c251096780dacbfbe3bd7d3381e1/ogx_client-1.2.1.tar.gz", hash = "sha256:1e22c29fff211c8f135da8f594407f01350ec00e9d0491d917b2fdd117d8b8c1", size = 588070, upload-time = "2026-07-14T19:20:43.71Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4d/c5/a99d4d23447ddd2205e034f58e445252074a049ae2000c25b15d1c1b5b08/ogx_client-1.2.2.tar.gz", hash = "sha256:64ab1ada323acfb746bc99631f56b0470006d4fc59e05c89b83ddf7330718d6a", size = 588153, upload-time = "2026-07-27T14:54:17.411Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f3/1b/d912fcec167ec4d0b03b39579e2c0e4f8d712025f5bcb1e837b83a4e0ccc/ogx_client-1.2.1-py3-none-any.whl", hash = "sha256:b23c94e2ec5be59b359280ff58574d426662c22e0a6cbd51fc6357deb045e3ca", size = 1544659, upload-time = "2026-07-14T19:20:42.053Z" },
+    { url = "https://files.pythonhosted.org/packages/b3/2a/cc814caacc68dd1fa68b40fab6c3f31fc50aaa0bda357c802a940f1c4bf7/ogx_client-1.2.2-py3-none-any.whl", hash = "sha256:423e06b79508d86a2d9f0c4702c8cf564582106f8fd0853576092e1e12929590", size = 1544657, upload-time = "2026-07-27T14:54:15.536Z" },
 ]
 
 [[package]]
