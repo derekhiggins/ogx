@@ -1,3 +1,11 @@
+---
+slug: install-ogx-with-helm
+title: "Installing OGX on RHOAI 3.5 with Helm"
+authors: [derekhiggins, EleanorWho]
+tags: [ogx, helm, openshift, rhoai, deployment]
+date: 2026-08-18
+---
+
 # Installing OGX on RHOAI 3.5 with Helm (from OGX Showroom)
 
 OGX brings a unified, OpenAI-compatible AI platform - inference, embeddings,
@@ -17,8 +25,10 @@ https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed
 
 Two Helm charts do the work:
 
-- **ogx-infra** - the supporting infrastructure: PostgreSQL, Milvus, Keycloak,
-  MinIO, and etcd. Sensible defaults mean you usually don't touch it.
+- **ogx-infra** - the supporting infrastructure: PostgreSQL (metadata storage),
+  Milvus (vector store for RAG), Keycloak (OAuth2 authentication), MinIO
+  (object storage for files), and etcd (configuration coordination). Sensible
+  defaults mean you usually don't touch it.
 - **ogx-rhoai** - the OGX server itself, deployed as an `OGXServer` custom
   resource, plus an OpenShift Route and NetworkPolicy.
 
@@ -33,6 +43,17 @@ Everything lands in a namespace you create (this guide uses `ogx-ns`).
 - `oc` logged in to the cluster.
 - `helm` 3.x installed.
 - VLLM inference and embedding endpoints you can reach, each with an API token.
+  Verify they are reachable before proceeding:
+  ```bash
+  curl -s "https://<your-vllm-inference-endpoint>/v1/models" \
+    -H "Authorization: Bearer <your-token>"
+  ```
+  You should get a JSON response listing the available models. If you get an
+  error or HTML page, fix the endpoint first.
+- Minimum cluster resources: **3 worker nodes, each 4 vCPU / 32 GiB**
+  (e.g. AWS `m5.xlarge`). The OGX stack itself requests ~2 cores / ~5 GiB /
+  45 Gi storage; the rest is RHOAI/OpenShift platform overhead. No GPU is
+  required — inference and embeddings are served by external vLLM endpoints.
 
 ## Step 1: Configure your endpoints
 
@@ -42,16 +63,18 @@ your VLLM endpoints live. Create a `values.yaml`:
 ```yaml
 ogx:
   inference:
-    model: llama-3-2-3b
-    vllmUrl: "https://your-vllm-inference-endpoint/v1"
-    vllmApiToken: "your-inference-token"
+    model: <your-inference-model>        # e.g. llama-3-2-3b — must match what your vLLM endpoint serves
+    vllmUrl: "https://<your-vllm-inference-endpoint>/v1"
+    vllmApiToken: "<your-inference-token>"
   embedding:
-    model: nomic-embed-text-v1.5
-    vllmUrl: "https://your-vllm-embedding-endpoint/v1"
-    vllmApiToken: "your-embedding-token"
-  # Optional, only if you want to use OpenAI models
-  openaiApiKey: ""
+    model: <your-embedding-model>        # e.g. nomic-embed-text-v1.5
+    vllmUrl: "https://<your-vllm-embedding-endpoint>/v1"
+    vllmApiToken: "<your-embedding-token>"
 ```
+
+> **Replace all `<...>` placeholders** with your actual values. The model names
+> must match exactly what your vLLM endpoints serve — check with
+> `curl <your-endpoint>/v1/models` if unsure.
 
 ## Step 2: Install
 
@@ -82,7 +105,13 @@ oc get ogxserver -n $NS
 oc get pods -n $NS
 ```
 
-Wait until the `OGXServer` reports ready and the pods are `Running`.
+Wait until the `OGXServer` reports ready and the pods are `Running`. Example
+output when everything is healthy:
+
+```
+NAME               PHASE   PROVIDERS   AVAILABLE   AGE
+ogx-distribution   Ready               1           2m
+```
 
 ## Step 3: Test it
 
@@ -90,6 +119,7 @@ In this demo OGX authenticates through Keycloak (realm `ogx-demo`, client `ogx`)
 token and send a chat completion request to confirm the server is live:
 
 ```bash
+NS=ogx-ns
 OGX_URL=$(oc get route ogx-distribution -n $NS -o jsonpath='{.spec.host}')
 KEYCLOAK_HOST=$(oc get route keycloak -n $NS -o jsonpath='{.spec.host}')
 CLIENT_SECRET=$(oc get secret keycloak-secret -n $NS -o jsonpath='{.data.KEYCLOAK_CLIENT_SECRET}' | base64 -d)
@@ -97,17 +127,18 @@ USER_PASSWORD=$(oc get secret keycloak-secret -n $NS -o jsonpath='{.data.KEYCLOA
 
 TOKEN=$(curl -s "https://${KEYCLOAK_HOST}/realms/ogx-demo/protocol/openid-connect/token" \
   -d "grant_type=password&client_id=ogx&client_secret=${CLIENT_SECRET}&username=user&password=${USER_PASSWORD}" \
-  | jq -r .access_token)
+  | jq -r '.access_token')
 
+# Send a chat completion request — replace <your-inference-model> with the model from your values.yaml
 curl -s "https://${OGX_URL}/v1/chat/completions" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"model": "vllm-inference/llama-3-2-3b", "messages": [{"role": "user", "content": "Say hello in 5 words"}]}' \
-  | jq .choices[0].message.content
+  -d '{"model": "vllm-inference/<your-inference-model>", "messages": [{"role": "user", "content": "Say hello in 5 words"}]}' \
+  | jq '.choices[0].message.content'
 ```
 
-The model is prefixed with the provider (`vllm-inference/`) and must match the
-model you configured in `values.yaml` (whatever your vLLM endpoint serves).
+The model ID is prefixed with the provider (`vllm-inference/`) and must match
+the model you configured in `values.yaml`.
 
 Output:
 
@@ -139,5 +170,6 @@ oc delete secret keycloak-db-secret keycloak-secret minio-secret \
 
 With two `helm` commands you have a complete OGX stack - inference, embeddings,
 a vector store, OAuth2 auth, and object storage - running on ODH/RHOAI 3.5. From
-here, explore the demo suite in the OGX Showroom repo to build RAG pipelines,
-agents, and more against your new endpoint.
+here, explore the demo suite in the
+[OGX Showroom repo](https://github.com/opendatahub-io/ogx-showroom)
+to build RAG pipelines, agents, and more against your new endpoint.
