@@ -17,7 +17,7 @@ which we assume is already installed and running on your cluster. If you still
 need to install it, add the ODH or RHOAI 3.5 operator from the OpenShift software
 catalog first, then come back here. Details on installing the operator and
 creating the `DataScienceCluster` are in the RHOAI docs:
-https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed
+<https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed>
 
 ![Finding ODH/RHOAI in the OpenShift software catalog](./images/odh-rhoai-software-catalog.png)
 
@@ -44,10 +44,12 @@ Everything lands in a namespace you create (this guide uses `ogx-ns`).
 - `helm` 3.x installed.
 - VLLM inference and embedding endpoints you can reach, each with an API token.
   Verify they are reachable before proceeding:
+
   ```bash
   curl -s "https://<your-vllm-inference-endpoint>/v1/models" \
     -H "Authorization: Bearer <your-token>"
   ```
+
   You should get a JSON response listing the available models. If you get an
   error or HTML page, fix the endpoint first.
 - Minimum cluster resources: **3 worker nodes, each 4 vCPU / 32 GiB**
@@ -108,7 +110,7 @@ oc get pods -n $NS
 Wait until the `OGXServer` reports ready and the pods are `Running`. Example
 output when everything is healthy:
 
-```
+```text
 NAME               PHASE   PROVIDERS   AVAILABLE   AGE
 ogx-distribution   Ready               1           2m
 ```
@@ -142,7 +144,7 @@ the model you configured in `values.yaml`.
 
 Output:
 
-```
+```text
 "Hello, how are you?"
 ```
 
