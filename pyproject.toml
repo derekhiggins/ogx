@@ -64,7 +64,7 @@ dependencies = [
     "oracledb>=3.4.1",
     "oci>=2.165.0",
     "numpy>=2.3.2",
-    "mcp>=1.23.0",                                    # for connectors
+    "mcp>=1.23.0,<2.0.0",                                    # for connectors
 ]
 
 [project.optional-dependencies]
@@ -94,7 +94,7 @@ starter = [
     "httpx",
     "langdetect",
     "matplotlib",
-    "mcp>=1.23.0",
+    "mcp>=1.23.0,<2.0.0",
     "nltk>=3.10.0",                                   # CVE-2026-54293/CVE-2026-12243: path traversal in nltk.data.load()
     "numpy",
     "ollama",
@@ -171,7 +171,7 @@ type_checking = [
     "sqlite-vec",
     "faiss-cpu",
     "lm-format-enforcer",
-    "mcp>=1.23.0",
+    "mcp>=1.23.0,<2.0.0",
     "ollama",
     "llama-stack-client==0.7.3",
 ]
@@ -185,7 +185,7 @@ unit = [
     "aiohttp",
     "psycopg2-binary>=2.9.0",
     "pypdf>=6.7.2",
-    "mcp>=1.23.0",
+    "mcp>=1.23.0,<2.0.0",
     "chardet",
     "sqlalchemy",
     "sqlalchemy[asyncio]>=2.0.41",
@@ -208,7 +208,7 @@ test = [
     "chardet",
     "psycopg2-binary>=2.9.0",
     "pypdf>=6.7.2",
-    "mcp>=1.23.0",
+    "mcp>=1.23.0,<2.0.0",
     "datasets>=4.0.0",
     "autoevals",
     "transformers",
