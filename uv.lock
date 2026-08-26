@@ -2793,10 +2793,10 @@ requires-dist = [
     { name = "jsonschema" },
     { name = "langdetect", marker = "extra == 'starter'" },
     { name = "llama-stack-api", editable = "src/llama_stack_api" },
-    { name = "llama-stack-client", marker = "extra == 'client'", specifier = "==0.7.2" },
+    { name = "llama-stack-client", marker = "extra == 'client'", specifier = "==0.7.3" },
     { name = "matplotlib", marker = "extra == 'starter'" },
-    { name = "mcp", specifier = ">=1.23.0" },
-    { name = "mcp", marker = "extra == 'starter'", specifier = ">=1.23.0" },
+    { name = "mcp", specifier = ">=1.23.0,<2.0.0" },
+    { name = "mcp", marker = "extra == 'starter'", specifier = ">=1.23.0,<2.0.0" },
     { name = "nltk", marker = "extra == 'starter'", specifier = ">=3.10.0" },
     { name = "numpy", specifier = ">=2.3.2" },
     { name = "numpy", marker = "extra == 'starter'" },
@@ -2901,7 +2901,7 @@ test = [
     { name = "chromadb", specifier = ">=1.0.15" },
     { name = "datasets", specifier = ">=4.0.0" },
     { name = "elasticsearch", specifier = ">=8.16.0,<9.0.0" },
-    { name = "mcp", specifier = ">=1.23.0" },
+    { name = "mcp", specifier = ">=1.23.0,<2.0.0" },
     { name = "milvus-lite", marker = "platform_machine == 'aarch64' or platform_machine == 'arm64' or platform_machine == 'x86_64'", specifier = ">=2.5.0" },
     { name = "psycopg2-binary", specifier = ">=2.9.0" },
     { name = "pymilvus", specifier = ">=2.6.2" },
@@ -2923,9 +2923,9 @@ type-checking = [
     { name = "datasets" },
     { name = "fairscale" },
     { name = "faiss-cpu" },
-    { name = "llama-stack-client", specifier = "==0.7.2" },
+    { name = "llama-stack-client", specifier = "==0.7.3" },
     { name = "lm-format-enforcer" },
-    { name = "mcp", specifier = ">=1.23.0" },
+    { name = "mcp", specifier = ">=1.23.0,<2.0.0" },
     { name = "nest-asyncio" },
     { name = "ollama" },
     { name = "pandas" },
@@ -2956,7 +2956,7 @@ unit = [
     { name = "databricks-sdk" },
     { name = "faiss-cpu" },
     { name = "litellm" },
-    { name = "mcp", specifier = ">=1.23.0" },
+    { name = "mcp", specifier = ">=1.23.0,<2.0.0" },
     { name = "moto", extras = ["s3"], specifier = ">=5.1.10" },
     { name = "ollama" },
     { name = "psycopg2-binary", specifier = ">=2.9.0" },
@@ -2991,7 +2991,7 @@ requires-dist = [
 
 [[package]]
 name = "llama-stack-client"
-version = "0.7.2"
+version = "0.7.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
@@ -3010,9 +3010,9 @@ dependencies = [
     { name = "tqdm" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d7/3d/c4a268a4b60feb6f7e6da3fad2504aa157a52384529766560f8f3cfca43f/llama_stack_client-0.7.2.tar.gz", hash = "sha256:0e3458800af6a18fd8fc5e0760ed626931a416f6c1fdf24aeba4001e6fca9aec", size = 372953, upload-time = "2026-04-08T14:19:32.02Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/de/85/fd08a1319b4dec638d9067f52704f394895fcb61e95a5d51d8303d6060e3/llama_stack_client-0.7.3.tar.gz", hash = "sha256:ec2b775a68c5d82aa3e03c4c93d9569123249d985d0a711d1fbe7b0edb05c670", size = 372955, upload-time = "2026-05-28T14:59:18.341Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/78/a8/cc7fa209471abcaac51139b3e6655c3b18ea718f0afa7cfa6ad974dd9eab/llama_stack_client-0.7.2-py3-none-any.whl", hash = "sha256:8b86156f2522c241ae46280e59287b7716c3cdaf016b6477630eb64bd8cbf150", size = 375337, upload-time = "2026-04-08T14:19:30.444Z" },
+    { url = "https://files.pythonhosted.org/packages/78/2e/21252ead9dc1df2f7e96a9523b7290eb9401291c460fef6cd19d3e781ded/llama_stack_client-0.7.3-py3-none-any.whl", hash = "sha256:05e3a474259447891039313a1348682303cc1e5e17508aeba1fa54dd2f968238", size = 375334, upload-time = "2026-05-28T14:59:16.545Z" },
 ]
 
 [[package]]
