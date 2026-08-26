@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.12"
 resolution-markers = [
     "(python_full_version >= '3.13' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version >= '3.13' and sys_platform != 'darwin' and sys_platform != 'linux')",
@@ -2233,7 +2233,7 @@ requires-dist = [
     { name = "jinja2", specifier = ">=3.1.6" },
     { name = "jsonschema" },
     { name = "llama-stack-api", editable = "src/llama_stack_api" },
-    { name = "llama-stack-client", marker = "extra == 'client'", specifier = "==0.4.6" },
+    { name = "llama-stack-client", marker = "extra == 'client'", specifier = "==0.4.7" },
     { name = "openai", specifier = ">=2.5.0" },
     { name = "opentelemetry-exporter-otlp-proto-http", specifier = ">=1.30.0" },
     { name = "opentelemetry-sdk", specifier = ">=1.30.0" },
@@ -2305,11 +2305,11 @@ test = [
     { name = "chardet" },
     { name = "chromadb", specifier = ">=1.0.15" },
     { name = "datasets", specifier = ">=4.0.0" },
-    { name = "mcp" },
+    { name = "mcp", specifier = "<2.0.0" },
     { name = "milvus-lite", specifier = ">=2.5.0" },
     { name = "psycopg2-binary", specifier = ">=2.9.0" },
     { name = "pymilvus", specifier = ">=2.6.1" },
-    { name = "pypdf", specifier = ">=6.7.2" },
+    { name = "pypdf", specifier = ">=6.7.2,<6.15" },
     { name = "qdrant-client" },
     { name = "requests" },
     { name = "sqlalchemy" },
@@ -2326,9 +2326,9 @@ type-checking = [
     { name = "datasets" },
     { name = "fairscale" },
     { name = "faiss-cpu" },
-    { name = "llama-stack-client", specifier = "==0.4.6" },
+    { name = "llama-stack-client", specifier = "==0.4.7" },
     { name = "lm-format-enforcer" },
-    { name = "mcp" },
+    { name = "mcp", specifier = "<2.0.0" },
     { name = "nest-asyncio" },
     { name = "ollama" },
     { name = "pandas" },
@@ -2359,12 +2359,12 @@ unit = [
     { name = "fairscale" },
     { name = "faiss-cpu" },
     { name = "litellm" },
-    { name = "llama-stack-client", specifier = "==0.4.6" },
-    { name = "mcp" },
+    { name = "llama-stack-client", specifier = "==0.4.7" },
+    { name = "mcp", specifier = "<2.0.0" },
     { name = "moto", extras = ["s3"], specifier = ">=5.1.10" },
     { name = "ollama" },
     { name = "psycopg2-binary", specifier = ">=2.9.0" },
-    { name = "pypdf", specifier = ">=6.7.2" },
+    { name = "pypdf", specifier = ">=6.7.2,<6.15" },
     { name = "sqlalchemy" },
     { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0.41" },
     { name = "sqlite-vec" },
@@ -2397,7 +2397,7 @@ requires-dist = [
 
 [[package]]
 name = "llama-stack-client"
-version = "0.4.6"
+version = "0.4.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
@@ -2416,9 +2416,9 @@ dependencies = [
     { name = "tqdm" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3f/a8/ca34ddb8a1e393ad33b117e6cc7df80dd672e27ae4e865437a5f0a3b888a/llama_stack_client-0.4.6.tar.gz", hash = "sha256:9b85dd4c76244c82008a6410d514bd0cab0e282b8b026496d5db4ceb229d28c0", size = 352943, upload-time = "2026-05-29T18:45:32.233Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/99/59/91a10634f40f7a8dcfe1bdfab4de9aaa5b13c5b2fe09b1d3d85924490dce/llama_stack_client-0.4.7.tar.gz", hash = "sha256:7f939fa1bc4505a479fda90291f707dc90a2fcc38a7f43f9679755544750a7ca", size = 352947, upload-time = "2026-07-27T14:26:45.634Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b1/7b/9ade2cd2518608bdde892618ac6b70c156478af87f9f10a931779d02a112/llama_stack_client-0.4.6-py3-none-any.whl", hash = "sha256:9245c706fd868f3ee6af2b10f9863d6736d3f98ebb31623d46ba34e58091c1f1", size = 375943, upload-time = "2026-05-29T18:45:30.365Z" },
+    { url = "https://files.pythonhosted.org/packages/1a/40/84fb4faece35d29c114811c20f018c019a5e08f1938a0a119fa3cbf2c2fe/llama_stack_client-0.4.7-py3-none-any.whl", hash = "sha256:f6cf220343c8f56c61bc9ed49851668809e0444ae5a77ff4771cead53d317511", size = 375941, upload-time = "2026-07-27T14:26:44.018Z" },
 ]
 
 [[package]]
